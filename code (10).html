@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>My Bookshelf</title>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACvUlEQVR4nO2by0tVURzGPyM/hISEPgRFgYRCI0EblVK0aRGrIW1ai1pFC1sLC2u0aVOWFrExPoFFW8QSs6w0tCIiKKL8oX/gLzgcfJ177pl7Z3GfA/eH892fcz5z7jn33GvExMTExMTExETUWgWmAeXAKeAEsD7EfwM+A41lQG2AWeAUMAScAs6D2xPzUaBdaWCSAI8BP4GZwFngMvBaxnwV2AZsBS4A2b4G+n2qA48BXY0kfgL2AHf6Oq31P8DXwDpgqY+ztR3gDFAHHgJ7gR3AMKAW+LHIxY/wEHgGrAEq/Ty+An5x5L8P6AC+BGaAPGAq8B8wBdgN9AHvARw49gIeBfoAVw4G3gD9gGHAQeAU8DLAxYkY1H4gQJ6yGlgJPAc+Bj6E9k2tBS4DXYCTwBngPXAUaGf+FbgLdAHq/Z02sA3YAhwA7gIdgevAGaBN+S3gJdAHmIjNuwZ4D7wO7AD+B+YDj9gT2n5gAR8A9zpyPPAI2An0AY4CDwD9gAHAWcBfoI/Z2sYAn4B+gDzAQWBV+b8xUfsq0A/oAswGjgFngfPAe2ArMA9YBDwInAS+B/YCu4GnwBpgL/AJuBLZPsa285+A/sDZwDzgE3AAmAmsBe70tbrsXgVOAUcC9wKdgE/BZeB0YLN/ZwnwNnAw8BWwD3gKvAwcBS4Bt4HfwPqQ+1Tgt7r+A27Qf4sS4FGgGfB+4FqgDbBbv3MJuBC4E3gIdAH+A5cCp4GZ+i1vgfLgduB+YAtwFLgN3A4MCe1/TzPgf+B+YDfQBJgKjAVGA+OBE4Cp+m3vgY/AGOAoMB64BvgdOArMBEaDXYGfwDbgrb/fJ+BPoBFwFLgTWAw8DVwI3AvsBS4FvgXWA+cDB4EzwGXAduBZYBmwBVgKnAVGAgcDo4HxwEngfWAisBCYCswGJgJTgcHAWGApsBA4FpgMzARGA7OBicBU4E9gIfAacCKwFBgMLAKmAxOBScDk4H3gc2AjsBU4D5wKzAOmAyOBScAE4FtgKvA5cB2YDkwETgRGAqMCExMTExMT+wNfAnA6T0Y+iwAAAABJRU5kJggg==">
+    
+    <!-- PWA & Mobile App Meta Tags for iPhone -->
+    <meta name="theme-color" content="#2d3748">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Bookshelf">
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACvUlEQVR4nO2by0tVURzGPyM/hISEPgRFgYRCI0EblVK0aRGrIW1ai1pFC1sLC2u0aVOWFrExPoFFW8QSs6w0tCIiKKL8oX/gLzgcfJ177pl7Z3GfA/eH892fcz5z7jn33GvExMTExMTExETUWgWmAeXAKeAEsD7EfwM+A41lQG2AWeAUMAScAs6D2xPzUaBdaWCSAI8BP4GZwFngMvBaxnwV2AZsBS4A2b4G+n2qA48BXY0kfgL2AHf6Oq31P8DXwDpgqY+ztR3gDFAHHgJ7gR3AMKAW+LHIxY/wEHgGrAEq/Ty+An5x5L8P6AC+BGaAPGAq8B8wBdgN9AHvARw49gIeBfoAVw4G3gD9gGHAQeAU8DLAxYkY1H4gQJ6yGlgJPAc+Bj6E9k2tBS4DXYCTwBngPXAUaGf+FbgLdAHq/Z02sA3YAhwA7gIdgevAGaBN+S3gJdAHmIjNuwZ4D7wO7AD+B+YDj9gT2n5gAR8A9zpyPPAI2An0AY4CDwD9gAHAWcBfoI/Z2sYAn4B+gDzAQWBV+b8xUfsq0A/oAswGjgFngfPAe2ArMA9YBDwInAS+B/YCu4GnwBpgL/AJuBLZPsa285+A/sDZwDzgE3AAmAmsBe70tbrsXgVOAUcC9wKdgE/BZeB0YLN/ZwnwNnAw8BWwD3gKvAwcBS4Bt4HfwPqQ+1Tgt7r+A27Qf4sS4FGgGfB+4FqgDbBbv3MJuBC4E3gIdAH+A5cCp4GZ+i1vgfLgduB+YAtwFLgN3A4MCe1/TzPgf+B+YDfQBJgKjAVGA+OBE4Cp+m3vgY/AGOAoMB64BvgdOArMBEaDXYGfwDbgrb/fJ+BPoBFwFLgTWAw8DVwI3AvsBS4FvgXWA+cDB4EzwGXAduBZYBmwBVgKnAVGAgcDo4HxwEngfWAisBCYCswGJgJTgcHAWGApsBA4FpgMzARGA7OBicBU4E9gIfAacCKwFBgMLAKmAxOBScDk4H3gc2AjsBU4D5wKzAOmAyOBScAE4FtgKvA5cB2YDkwETgRGAqMCExMTExMT+wNfAnA6T0Y+iwAAAABJRU5kJggg==">
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22My%20Bookshelf%22%2C%22short_name%22%3A%22Bookshelf%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a202c%22%2C%22theme_color%22%3A%22%232d3748%22%2C%22description%22%3A%22A%20personal%20library%20to%20track%20your%20books.%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACvUlEQVR4nO2by0tVURzGPyM%2FhISEPgRFgYRCI0EblVK0aRGrIW1ai1pFC1sLC2u0aVOWFrExPoFFW8QSs6w0tCIiKKL8oX%2FgLzgcfJ177pl7Z3GfA%2FeH892fcz5z7jn33GvExMTExMTExETUWgWmAeXAKeAEsD7EfwM%2BA41lQG2AWeAUMAScAs6D2xPzUaBdaWCSAI8BP4GZwFngMvBaxnwV2AZsBS4A2b4G%2Bn2qA48BXY0kfgL2AHf6Oq31P8DXwDpgqY%2BztR3gDFAHHgJ7gR3AMKAW%2BLHIxY%2FwEHgGrAEq%2FTy%2BAn5x5L8P6AC%2BBGaAPGAq8B8wBdgN9AHvARw49gIeBfoAVw4G3gD9gGHAQeAU8DLAxYkY1H4gQJ6yGlgJPAc%2BBj6E9k2tBS4DXYCTwBngPXAUaGf%2BFbgLdAHq%2FZ02sA3YAhwA7gIdgevAGaBN%2BS3gJdAHmIjNuwZ4D7wO7AD%2BB%2BYDj9gT2n5gAR8A9zpyPPAI2An0AY4CDwD9gAHAWcBfoI%2FZ2sYAn4B%2BgDzAQWBV%2Bb8xUfsq0A%2FoAswGjgFngfPAe2ArMA9YBDwInAS%2BB%2FYCu4GnwBpgL%2FAJuBLZPsa285%2BA%2FsDZwDzgE3AAmAmsBe70tbrsXgVOAUcC9wKdgE%2FBZeB0YLN%2FZwnwNnAw8BWwD3gKvAwcBS4Bt4HfwPqQ%2B1Tgt7r%2BA27Qf4sS4FGgGfB%2B4FqgDbBbv3MJuBC4E3gIdAH%2BA5cCp4GZ%2Bi1vgfLgduB%2BYAtwFLgN3A4MCe1%2FTzPgf%2BB%2BYDfQBJgKjAVGA%2BOBE4Cp%2Bm3vgY%2FAGOAoMB64BvgdOArMBEaDXYGfwDbgrb%2FfJ%2BBPoBFwFLgTWAw8DVwI3AvsBS4FvgXWA%2BcDB4EzwGXAduBZYBmwBVgKnAVGAgcDo4HxwEngfWAisBCYCswGJgJTgcHAWGApsBA4FpgMzARGA7OBicBU4E9gIfAacCKwFBgMLAKmAxOBScDk4H3gc2AjsBU4D5wKzAOmAyOBScAE4FtgKvA5cB2YDkwETgRGAqMCExMTExMT%2BwNfAnA6T0Y%2BiwAAAABJRU5kJggg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACvUlEQVR4nO2by0tVURzGPyM%2FhISEPgRFgYRCI0EblVK0aRGrIW1ai1pFC1sLC2u0aVOWFrExPoFFW8QSs6w0tCIiKKL8oX%2FgLzgcfJ177pl7Z3GfA%2FeH892fcz5z7jn33GvExMTExMTExETUWgWmAeXAKeAEsD7EfwM%2BA41lQG2AWeAUMAScAs6D2xPzUaBdaWCSAI8BP4GZwFngMvBaxnwV2AZsBS4A2b4G%2Bn2qA48BXY0kfgL2AHf6Oq31P8DXwDpgqY%2BztR3gDFAHHgJ7gR3AMKAW%2BLHIxY%2FwEHgGrAEq%2FTy%2BAn5x5L8P6AC%2BBGaAPGAq8B8wBdgN9AHvARw49gIeBfoAVw4G3gD9gGHAQeAU8DLAxYkY1H4gQJ6yGlgJPAc%2BBj6E9k2tBS4DXYCTwBngPXAUaGf%2BFbgLdAHq%2FZ02sA3YAhwA7gIdgevAGaBN%2BS3gJdAHmIjNuwZ4D7wO7AD%2BB%2BYDj9gT2n5gAR8A9zpyPPAI2An0AY4CDwD9gAHAWcBfoI%2FZ2sYAn4B%2BgDzAQWBV%2Bb8xUfsq0A%2FoAswGjgFngfPAe2ArMA9YBDwInAS%2BB%2FYCu4GnwBpgL%2FAJuBLZPsa285%2BA%2FsDZwDzgE3AAmAmsBe70tbrsXgVOAUcC9wKdgE%2FBZeB0YLN%2FZwnwNnAw8BWwD3gKvAwcBS4Bt4HfwPqQ%2B1Tgt7r%2BA27Qf4sS4FGgGfB%2B4FqgDbBbv3MJuBC4E3gIdAH%2BA5cCp4GZ%2Bi1vgfLgduB%2BYAtwFLgN3A4MCe1%2FTzPgf%2BB%2BYDfQBJgKjAVGA%2BOBE4Cp%2Bm3vgY%2FAGOAoMB64BvgdOArMBEaDXYGfwDbgrb%2FfJ%2BBPoBFwFLgTWAw8DVwI3AvsBS4FvgXWA%2BcDB4EzwGXAduBZYBmwBVgKnAVGAgcDo4HxwEngfWAisBCYCswGJgJTgcHAWGApsBA4FpgMzARGA7OBicBU4E9gIfAacCKwFBgMLAKmAxOBScDk4H3gc2AjsBU4D5wKzAOmAyOBScAE4FtgKvA5cB2YDkwETgRGAqMCExMTExMT%2BwNfAnA6T0Y%2BiwAAAABJRU5kJggg%3D%3D%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;700&display=swap');
+        
+        /* --- DARK THEME COLOR PALETTE --- */
+        :root {
+            --bg-color: #1a202c;         /* Dark Blue-Gray */
+            --sidebar-bg: #2d3748;     /* Lighter Blue-Gray */
+            --text-color: #e2e8f0;       /* Light Gray */
+            --accent-color: #4fd1c5;     /* Teal */
+            --card-bg: #2d3748;         /* Same as sidebar for consistency */
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --star-color: #fcec52;       /* Vibrant Yellow */
+            --delete-color: #e53e3e;     /* Red */
+        }
+
+        body{font-family:'Lato', sans-serif;background-color:var(--bg-color);color:var(--text-color);margin:0;display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+        .app-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background-color:var(--sidebar-bg);border-bottom:1px solid #4a5568;box-shadow:0 2px 8px var(--shadow-color);z-index:10;}
+        .app-title{font-family:'Merriweather', serif;font-size:2rem;margin:0;}
+        .add-book-btn{background-color:var(--accent-color);color:var(--text-color);border:none;border-radius:50%;width:50px;height:50px;font-size:2.5rem;font-weight:300;cursor:pointer;transition:transform 0.2s ease, background-color 0.2s ease;display:flex;justify-content:center;align-items:center;line-height:1;}
+        .add-book-btn:hover{transform:scale(1.1);background-color:#38b2ac;}
+        .main-container{display:flex;flex-grow:1;overflow:hidden;}
+        .sidebar{width:250px;background-color:var(--sidebar-bg);padding:1.5rem;overflow-y:auto;flex-shrink:0;}
+        .filter-list{list-style:none;padding:0;margin:0;}
+        .filter-list h3{margin-top:1.5rem;margin-bottom:0.5rem;color:var(--text-color);opacity:0.7;}
+        .filter-list li a{display:block;padding:0.75rem 1rem;text-decoration:none;color:var(--text-color);border-radius:8px;margin-bottom:0.5rem;font-weight:bold;transition:background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;}
+        .filter-list li a:hover{background-color:rgba(255,255,255,0.1);transform:translateX(5px);}
+        .filter-list li a.active{background-color:var(--accent-color);color:var(--text-color);}
+        .content-area{flex-grow:1;padding:2rem;display:flex;flex-direction:column;overflow:hidden;}
+        .content-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-shrink:0;}
+        .content-header h2{font-family:'Merriweather', serif;margin:0;font-size:1.8rem;}
+        #sort-select{padding:0.5rem;border-radius:6px;border:1px solid #4a5568;font-family:'Lato', sans-serif;background:var(--card-bg);color:var(--text-color);}
+        .book-carousel{flex-grow:1;display:flex;gap:2rem;align-items:center;overflow-x:auto;overflow-y:hidden;padding-bottom:2rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+        .book-carousel::-webkit-scrollbar{height:8px;}
+        .book-carousel::-webkit-scrollbar-track{background:var(--bg-color);border-radius:10px;}
+        .book-carousel::-webkit-scrollbar-thumb{background:#718096;border-radius:10px;}
+        .book-carousel::-webkit-scrollbar-thumb:hover{background:#a0aec0;}
+        .book-card{scroll-snap-align:center;flex:0 0 250px;height:400px;background-color:var(--card-bg);border-radius:10px;box-shadow:0 4px 15px var(--shadow-color);overflow:hidden;position:relative;transition:transform 0.3s ease, box-shadow 0.3s ease;cursor:pointer;display:flex;flex-direction:column;}
+        .book-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 8px 25px rgba(0,0,0,0.3);}
+        .book-cover{height:70%;width:100%;object-fit:cover;background-color:#4a5568;}
+        .book-info{padding:1rem;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:center;}
+        .book-title{font-size:1.1rem;font-weight:bold;margin:0;}
+        .book-author{font-size:0.9rem;color:#a0aec0;margin-top:0.25rem;}
+        .book-card .delete-btn{position:absolute;top:10px;right:10px;background-color:rgba(229, 62, 62, 0.7);color:white;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;display:flex;justify-content:center;align-items:center;font-weight:bold;opacity:0;transition:opacity 0.2s ease, background-color 0.2s ease;font-size:1.2rem;}
+        .book-card:hover .delete-btn{opacity:1;}
+        .delete-btn:hover{background-color:var(--delete-color);}
+        .empty-state{width:100%;text-align:center;padding:4rem;color:#718096;}
+        .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.6);align-items:center;justify-content:center;backdrop-filter:blur(5px);}
+        
+        .modal-content{
+            background-color:var(--sidebar-bg);
+            margin: auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.3);
+            animation:slide-down 0.4s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes slide-down{from{transform:translateY(-50px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+        .close-btn{color:#a0aec0;float:right;font-size:28px;font-weight:bold;cursor:pointer;line-height:1;transition: color 0.2s ease;}
+        .close-btn:hover{color: var(--text-color);}
+        .modal-form h2{font-family:'Merriweather', serif;margin-top:0;}
+        .form-group{margin-bottom:1rem;}
+        .form-group label{display:block;margin-bottom:0.5rem;font-weight:bold;}
+        .form-group input, .form-group select, .form-group textarea{width:100%;padding:0.75rem;border:1px solid #4a5568;border-radius:6px;box-sizing:border-box;background:var(--bg-color); color: var(--text-color);}
+        .form-group input::placeholder, .form-group textarea::placeholder { color: #a0aec0; opacity: 1; }
+        .form-group textarea {min-height: 120px; resize: vertical;}
+        .form-group button{width:100%;padding:0.75rem;background-color:var(--accent-color);color:var(--text-color);border:none;border-radius:6px;font-size:1rem;font-weight:bold;cursor:pointer;transition:background-color 0.2s ease;}
+        .form-group button:hover{background-color:#38b2ac;}
+        .star-rating{display:flex;justify-content:center;gap:5px;font-size:2rem;cursor:pointer;color:#4a5568;} /* Unfilled star color */
+        .star-rating .star:hover, .star-rating .star.filled{color:var(--star-color);}
+        #detailsModal .book-cover-large {width: 150px; height: 220px; object-fit: cover; border-radius: 8px; float: left; margin-right: 1.5rem; margin-bottom: 1rem;}
+        #detailsModal .details-content { overflow: hidden; }
+        #detailsModal h2 { font-family: 'Merriweather', serif; margin-top: 0; }
+        #detailsModal p { margin: 0.5rem 0; }
+        #detailsModal .notes-section { clear: both; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #4a5568; }
+        #detailsModal .notes-section h3 { margin-top: 0; }
+        #detailsModal .notes-text { background-color: var(--bg-color); padding: 1rem; border-radius: 6px; min-height: 50px; white-space: pre-wrap; word-wrap: break-word;}
+        #detailsModal .details-actions { margin-top: 1.5rem; text-align: right; }
+        .details-actions button { padding: 0.5rem 1rem; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-left: 0.5rem; }
+        .edit-btn { background-color: var(--accent-color); color: var(--text-color); }
+        .edit-btn:hover { background-color: #38b2ac; }
+        @media (max-width: 768px){.main-container{flex-direction:column;}.sidebar{width:100%;height:auto;flex-shrink:1;border-bottom:2px solid var(--border-color);box-sizing:border-box;display:flex;flex-direction:column;}.sidebar .filter-list{display:flex;overflow-x:auto;padding-bottom:1rem;}.sidebar .filter-list li{flex-shrink:0;}.sidebar h2, .sidebar h3{display:none;}.app-header{padding:0.75rem 1rem;}.app-title{font-size:1.5rem;}.add-book-btn{width:40px;height:40px;font-size:1.5rem;}.content-area{padding:1rem;}.book-card{flex:0 0 200px;height:320px;}}
+        @media (max-width: 480px) { #detailsModal .book-cover-large { float: none; display: block; margin: 0 auto 1rem; } }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <h1 class="app-title">BOOKSHELF</h1>
+        <button class="add-book-btn" id="openModalBtn" title="Add New Book">+</button>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <ul class="filter-list" id="status-filters">
+                <h3>Status</h3>
+                <li><a href="#" class="active" data-filter="All">All Books</a></li>
+                <li><a href="#" data-filter="To Read">To Read</a></li>
+                <li><a href="#" data-filter="Reading">Reading</a></li>
+                <li><a href="#" data-filter="Read">Read</a></li>
+            </ul>
+             <ul class="filter-list" id="genre-filters">
+                <h3>Genres</h3>
+             </ul>
+        </aside>
+
+        <main class="content-area">
+            <div class="content-header">
+                <h2 id="current-view-title">All Books</h2>
+                <div class="sort-controls">
+                    <label for="sort-select">Sort by:</label>
+                    <select id="sort-select">
+                        <option value="dateAdded_desc">Date Added (Newest)</option>
+                        <option value="dateAdded_asc">Date Added (Oldest)</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                        <option value="rating_desc">Rating (High-Low)</option>
+                        <option value="rating_asc">Rating (Low-High)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="book-carousel" id="book-carousel"></div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Book Modal -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeFormModalBtn">&times;</span>
+            <form id="book-form" class="modal-form">
+                <h2 id="form-title">Add a New Book</h2>
+                <input type="hidden" id="bookId">
+                <div class="form-group">
+                    <label for="title">Book Title</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre</label>
+                    <input type="text" id="genre" placeholder="e.g., Fantasy, Sci-Fi" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="To Read">To Read</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Read">Read</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <div class="star-rating" id="form-star-rating">
+                        <!-- Stars generated by JS -->
+                    </div>
+                    <input type="hidden" id="rating" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes"></textarea>
+                </div>
+                 <div class="form-group">
+                    <label for="coverFile">Book Cover (from gallery)</label>
+                    <input type="file" id="coverFile" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="form-submit-btn">Add to Bookshelf</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeDetailsModalBtn">&times;</span>
+            <div id="details-modal-content">
+                <!-- Content generated by JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- STATE & CONFIG ---
+            let books = [];
+            let currentFilter = 'All';
+            let currentSort = 'dateAdded_desc';
+
+            // --- DOM ELEMENTS ---
+            const bookCarousel = document.getElementById('book-carousel');
+            const formModal = document.getElementById('formModal');
+            const detailsModal = document.getElementById('detailsModal');
+            const openModalBtn = document.getElementById('openModalBtn');
+            const closeFormModalBtn = document.getElementById('closeFormModalBtn');
+            const closeDetailsModalBtn = document.getElementById('closeDetailsModalBtn');
+            const bookForm = document.getElementById('book-form');
+            const statusFilters = document.getElementById('status-filters');
+            const genreFilters = document.getElementById('genre-filters');
+            const currentViewTitle = document.getElementById('current-view-title');
+            const sortSelect = document.getElementById('sort-select');
+
+            // --- SAMPLE DATA ---
+            const sampleBooks = [
+                { id: 1, title: 'The Hobbit', author: 'J.R.R. Tolkien', genre: 'Fantasy', status: 'Read', coverUrl: 'https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg', dateAdded: 1672531200000, rating: 9, notes: 'A classic adventure. The descriptions of Smaug are fantastic.' },
+                { id: 2, title: 'Dune', author: 'Frank Herbert', genre: 'Sci-Fi', status: 'Reading', coverUrl: 'https://images-na.ssl-images-amazon.com/images/I/81ym3QUd3KL.jpg', dateAdded: 1675209600000, rating: 0, notes: 'Just started, the world-building is immense.' },
+            ];
+            
+            // --- DATA FUNCTIONS ---
+            const saveData = () => { try { localStorage.setItem('myBookshelf', JSON.stringify(books)); } catch (e) { console.error("Could not save books:", e); alert("Error saving books. Storage might be full."); } };
+            const loadData = () => { const saved = localStorage.getItem('myBookshelf'); books = saved ? JSON.parse(saved) : sampleBooks; };
+
+            // --- RENDER FUNCTIONS ---
+            const renderGenres = () => {
+                const uniqueGenres = [...new Set(books.map(b => b.genre.trim()))].sort();
+                genreFilters.innerHTML = '<h3>Genres</h3>';
+                uniqueGenres.forEach(genre => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="#" data-filter="${genre}" data-filter-type="genre">${genre}</a>`;
+                    genreFilters.appendChild(li);
+                });
+            };
+
+            const renderBooks = () => {
+                bookCarousel.innerHTML = '';
+                let filteredBooks = books;
+                if (currentFilter !== 'All') {
+                    const active = document.querySelector('.filter-list a.active');
+                    if (active && active.dataset.filterType === 'genre') {
+                        filteredBooks = books.filter(b => b.genre === currentFilter);
+                    } else {
+                        filteredBooks = books.filter(b => b.status === currentFilter);
+                    }
+                }
+                
+                filteredBooks.sort((a,b) => {
+                    switch(currentSort) {
+                        case 'title': return a.title.localeCompare(b.title);
+                        case 'author': return a.author.localeCompare(b.author);
+                        case 'dateAdded_asc': return a.dateAdded - b.dateAdded;
+                        case 'rating_desc': return (b.rating || 0) - (a.rating || 0);
+                        case 'rating_asc': return (a.rating || 0) - (b.rating || 0);
+                        case 'dateAdded_desc':
+                        default:
+                            return b.dateAdded - a.dateAdded;
+                    }
+                });
+
+                if (filteredBooks.length === 0) {
+                    bookCarousel.innerHTML = `<div class="empty-state"><h3>No books here!</h3><p>Try a different filter or add a new book.</p></div>`;
+                    return;
+                }
+
+                filteredBooks.forEach(book => {
+                    const bookCard = document.createElement('div');
+                    bookCard.className = 'book-card';
+                    bookCard.dataset.id = book.id;
+                    const coverSrc = book.coverUrl || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAQlBMVEX///+2t7bT09Pe3t7b29vExsTj4+POz8/y8vLq6ur6+vrf4N/LysqoqKnf39/V1dXAwMDc3NyPlJSsq6u4ubrW2NbLzMpdjPLsAAACuUlEQVR4nO3c63KiQBCFYSiBFERAwdL//2mHhEPLdJd2dWa708wZk3PZJrcwD8LAwMDAwMDAwP8D/30b3N6A92Jg4N8g8P22sIP3JgYGBv4Ggk+v9+D9iYGBgX+VwD+f14P3JgYGBv4qge+v6sH7EwMDA/8aAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mAQMD/yYBAwP/JgEDA/8mgeW9k+A/eH8iGLy/A+/H4L2XwPA+gvefgeF9BO8/A8P7CN5/BobyLoD3XxT9e3sE3s/B+zE42PseDNa/gOGdTwL74w3evwWG9yG8/wwM70N4/xkgbn4Q4X2F9z8D4/sU3v8MjO9TeP8ZmM63wPA+gvefgeF9BO8/A8P7CN5/BobzLUDw/mvg/VcwvA/h/WdgeB/C+8+A8D6E958B4X0I7z8D0/kWGJ7P8P5zMLwP4f1nYLgP4f1nYLgP4f1nYLgP4f1nYLgP4f1nYDjfAsP5/4X3n4HhfQjvPwPD+xDefwaG9yG8/wyM51tgeB/C+8/A8D6E958B4X0I7z8D8/kWGJzPw/sTzeB5H8L7z8Dwfob3n4Hh/QzvP8P5+S4wPA/h/WdgeB7C+8/A8DyE958BYXsewvvPgPA8hPedAeF5CO87A8LzEN53BoZzPcvA8D6E95+B4X0I7z8Dw/sQ3n8GhvMtwPA+hPedAeF9CO87A8L7EN53BoZzPcvA+1kDAwP/JgEDA/8mAQMD/yb/BwYGBgYGBgb+D/gH7K4f+g3wGzYAAAAASUVORK5CYII=';
+                    bookCard.innerHTML = `
+                        <img src="${coverSrc}" alt="${book.title}" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">${book.title}</h3>
+                            <p class="book-author">${book.author}</p>
+                        </div>
+                        <button class="delete-btn" data-id="${book.id}" title="Delete Book">&times;</button>`;
+                    bookCarousel.appendChild(bookCard);
+                });
+            };
+
+            const renderAll = () => { renderGenres(); renderBooks(); };
+
+            // --- MODAL & FORM FUNCTIONS ---
+            const showBookDetails = (bookId) => {
+                const book = books.find(b => b.id == bookId);
+                if (!book) return;
+
+                const detailsContent = document.getElementById('details-modal-content');
+                detailsContent.innerHTML = `
+                    <img src="${book.coverUrl || 'placeholder.png'}" alt="${book.title}" class="book-cover-large">
+                    <div class="details-content">
+                        <h2>${book.title}</h2>
+                        <p><strong>Author:</strong> ${book.author}</p>
+                        <p><strong>Genre:</strong> ${book.genre}</p>
+                        <p><strong>Status:</strong> ${book.status}</p>
+                        <div class="star-rating" id="details-star-rating"></div>
+                    </div>
+                    <div class="notes-section">
+                        <h3>Notes</h3>
+                        <div class="notes-text">${book.notes ? book.notes.replace(/\n/g, '<br>') : 'No notes added yet.'}</div>
+                    </div>
+                    <div class="details-actions">
+                        <button class="edit-btn" data-id="${book.id}">Edit</button>
+                    </div>`;
+                
+                renderStars(book.rating || 0, document.getElementById('details-star-rating'), false);
+                detailsModal.style.display = 'flex';
+            };
+
+            const openFormForEdit = (bookId) => {
+                const book = books.find(b => b.id == bookId);
+                if (!book) return;
+
+                document.getElementById('form-title').textContent = 'Edit Book';
+                document.getElementById('form-submit-btn').textContent = 'Save Changes';
+                document.getElementById('bookId').value = book.id;
+                document.getElementById('title').value = book.title;
+                document.getElementById('author').value = book.author;
+                document.getElementById('genre').value = book.genre;
+                document.getElementById('status').value = book.status;
+                document.getElementById('notes').value = book.notes || '';
+                document.getElementById('rating').value = book.rating || 0;
+                
+                renderStars(book.rating || 0, document.getElementById('form-star-rating'), true);
+                detailsModal.style.display = 'none';
+                formModal.style.display = 'flex';
+            };
+            
+            const openFormForNew = () => {
+                document.getElementById('form-title').textContent = 'Add a New Book';
+                document.getElementById('form-submit-btn').textContent = 'Add to Bookshelf';
+                bookForm.reset();
+                document.getElementById('bookId').value = '';
+                document.getElementById('rating').value = 0;
+                renderStars(0, document.getElementById('form-star-rating'), true);
+                formModal.style.display = 'flex';
+            };
+
+            const saveBook = async (e) => {
+                e.preventDefault();
+                const bookId = document.getElementById('bookId').value;
+                const coverFile = document.getElementById('coverFile').files[0];
+                let coverDataUrl = null;
+
+                if (coverFile) {
+                    try { coverDataUrl = await readFileAsDataURL(coverFile); } 
+                    catch (error) { alert("Could not read image file."); return; }
+                }
+
+                const bookData = {
+                    title: document.getElementById('title').value.trim(),
+                    author: document.getElementById('author').value.trim(),
+                    genre: document.getElementById('genre').value.trim(),
+                    status: document.getElementById('status').value,
+                    rating: parseInt(document.getElementById('rating').value, 10),
+                    notes: document.getElementById('notes').value.trim()
+                };
+
+                if (bookId) { // Editing existing book
+                    const bookIndex = books.findIndex(b => b.id == bookId);
+                    if (bookIndex > -1) {
+                        books[bookIndex] = { ...books[bookIndex], ...bookData };
+                        if (coverDataUrl) books[bookIndex].coverUrl = coverDataUrl;
+                    }
+                } else { // Adding new book
+                    books.push({
+                        id: Date.now(),
+                        dateAdded: Date.now(),
+                        ...bookData,
+                        coverUrl: coverDataUrl
+                    });
+                }
+                saveData();
+                renderAll();
+                formModal.style.display = 'none';
+            };
+            
+            const deleteBook = (id) => {
+                if (confirm('Are you sure you want to delete this book?')) {
+                    books = books.filter(b => b.id != id);
+                    saveData();
+                    renderAll();
+                }
+            };
+            
+            const readFileAsDataURL = (file) => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+
+            // --- STAR RATING ---
+            const renderStars = (rating, container, isInteractive) => {
+                container.innerHTML = '';
+                for (let i = 1; i <= 10; i++) {
+                    const star = document.createElement('span');
+                    star.className = 'star';
+                    star.innerHTML = '&#9733;'; // star character
+                    star.dataset.value = i;
+                    if (i <= rating) {
+                        star.classList.add('filled');
+                    }
+                    container.appendChild(star);
+                }
+
+                if (isInteractive) {
+                    container.addEventListener('click', handleStarClick);
+                    container.addEventListener('mouseover', handleStarHover);
+                    container.addEventListener('mouseout', handleStarMouseOut);
+                }
+            };
+
+            const handleStarClick = (e) => {
+                if (e.target.classList.contains('star')) {
+                    const rating = e.target.dataset.value;
+                    document.getElementById('rating').value = rating;
+                    renderStars(rating, e.currentTarget, true);
+                }
+            };
+
+            const handleStarHover = (e) => {
+                if (e.target.classList.contains('star')) {
+                    const rating = e.target.dataset.value;
+                    const stars = e.currentTarget.querySelectorAll('.star');
+                    stars.forEach(star => {
+                        star.classList.toggle('filled', star.dataset.value <= rating);
+                    });
+                }
+            };
+
+            const handleStarMouseOut = (e) => {
+                const currentRating = document.getElementById('rating').value;
+                renderStars(currentRating, e.currentTarget, true);
+            };
+
+
+            // --- EVENT LISTENERS ---
+            openModalBtn.addEventListener('click', openFormForNew);
+            closeFormModalBtn.onclick = () => formModal.style.display = 'none';
+            closeDetailsModalBtn.onclick = () => detailsModal.style.display = 'none';
+            window.onclick = (e) => { if (e.target == formModal) formModal.style.display = 'none'; if (e.target == detailsModal) detailsModal.style.display = 'none'; };
+            bookForm.addEventListener('submit', saveBook);
+            sortSelect.addEventListener('change', (e) => { currentSort = e.target.value; renderBooks(); });
+            
+            [statusFilters, genreFilters].forEach(filterGroup => {
+                filterGroup.addEventListener('click', e => {
+                    if (e.target.tagName === 'A') {
+                        e.preventDefault();
+                        document.querySelectorAll('.filter-list a').forEach(a => a.classList.remove('active'));
+                        e.target.classList.add('active');
+                        currentFilter = e.target.dataset.filter;
+                        currentViewTitle.textContent = e.target.textContent;
+                        renderBooks();
+                    }
+                });
+            });
+
+            bookCarousel.addEventListener('click', (e) => {
+                const card = e.target.closest('.book-card');
+                if (!card) return;
+
+                if (e.target.classList.contains('delete-btn')) {
+                    deleteBook(e.target.dataset.id);
+                } else {
+                    showBookDetails(card.dataset.id);
+                }
+            });
+
+            detailsModal.addEventListener('click', (e) => {
+                if (e.target.classList.contains('edit-btn')) {
+                    openFormForEdit(e.target.dataset.id);
+                }
+            });
+
+            // --- INITIALIZATION ---
+            const init = () => { loadData(); renderAll(); };
+            init();
+        });
+    </script>
+    
+    <script>
+        // PWA Service Worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'bookshelf-cache-v1';
+                // Since this is a single-page app with inlined resources, we only need to cache the root document.
+                const urlsToCache = []; 
+
+                self.addEventListener('install', event => {
+                    // When loaded from a file, location.pathname is the filename (e.g., /code.html).
+                    // When loaded from a server root, it might be '/'. We cache this specific path.
+                    urlsToCache.push(location.pathname);
+                    event.waitUntil(
+                        caches.open(CACHE_NAME).then(cache => {
+                            console.log('Opened cache. Caching initial page:', urlsToCache);
+                            // addAll() fetches the URLs and caches the response.
+                            return cache.addAll(urlsToCache);
+                        }).catch(err => console.error('Cache addAll failed:', err))
+                    );
+                });
+
+                self.addEventListener('fetch', event => {
+                    // We only handle navigation requests (i.e., loading the page itself) for this simple offline setup.
+                    // Other requests (like to Google Fonts) will go to the network as usual.
+                    if (event.request.mode !== 'navigate') {
+                        return;
+                    }
+                    event.respondWith(
+                        caches.match(event.request).then(response => {
+                            // If the request is in the cache, return it. Otherwise, fetch from the network.
+                            // This is a "cache-first" strategy.
+                            return response || fetch(event.request);
+                        })
+                    );
+                });
+            `;
+            const swBlob = new Blob([swCode], { type: 'application/javascript' });
+            
+            window.addEventListener('load', () => {
+                // We create a blob URL for the service worker code and register that.
+                // This avoids needing a separate .js file.
+                navigator.serviceWorker.register(URL.createObjectURL(swBlob))
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+
+</body>
+</html>
